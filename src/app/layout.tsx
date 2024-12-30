@@ -1,6 +1,20 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Navbar from "./components/Navbar";
+import { ThemeProvider } from "@/components/theme-provider"
+import {Roboto, Cedarville_Cursive} from "next/font/google";
+
+const cedarville_cursive = Cedarville_Cursive({
+  weight: '400',
+  subsets:['latin'],
+})
+
+
+const roboto = Roboto({
+  weight: ['400','500','700'],
+  subsets:['latin'],
+})
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,9 +40,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${roboto.className} ${cedarville_cursive.className}  antialiased`}
       >
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+        <Navbar/>
         {children}
+        </ThemeProvider>
       </body>
     </html>
   );
