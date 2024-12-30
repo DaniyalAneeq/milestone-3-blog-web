@@ -2,6 +2,7 @@ import { defineType, defineField } from "sanity";
 import { StringRule } from "@sanity/types";
 
 
+
 export const author = defineType({
     name: 'author',
     type: 'document',
